@@ -1,0 +1,20 @@
+[2024-11-18T23:55:48.070+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T23:55:48.094+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group_test.run-example manual__2024-11-18T23:55:47.253428+00:00 [queued]>
+[2024-11-18T23:55:48.103+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group_test.run-example manual__2024-11-18T23:55:47.253428+00:00 [queued]>
+[2024-11-18T23:55:48.104+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T23:55:48.123+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-18 23:55:47.253428+00:00
+[2024-11-18T23:55:48.133+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group_test', 'run-example', 'manual__2024-11-18T23:55:47.253428+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp1gcmpb5b']
+[2024-11-18T23:55:48.136+0000] {standard_task_runner.py:105} INFO - Job 15: Subtask run-example
+[2024-11-18T23:55:48.149+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=180) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T23:55:48.150+0000] {standard_task_runner.py:72} INFO - Started process 187 to run task
+[2024-11-18T23:55:48.192+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group_test.run-example manual__2024-11-18T23:55:47.253428+00:00 [running]> on host c7fed84c6e2a
+[2024-11-18T23:55:48.280+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group_test' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-18T23:55:47.253428+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-18T23:55:47.253428+00:00'
+[2024-11-18T23:55:48.281+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T23:55:48.341+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T23:55:55.342+0000] {docker.py:438} INFO - 
+[2024-11-18T23:55:57.120+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T23:55:57.705+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T23:55:57.706+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group_test, task_id=run-example, run_id=manual__2024-11-18T23:55:47.253428+00:00, execution_date=20241118T235547, start_date=20241118T235548, end_date=20241118T235557
+[2024-11-18T23:55:57.748+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T23:55:57.770+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T23:55:57.771+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

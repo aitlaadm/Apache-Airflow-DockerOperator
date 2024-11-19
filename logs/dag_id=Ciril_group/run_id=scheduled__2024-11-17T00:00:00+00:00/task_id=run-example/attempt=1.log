@@ -1,0 +1,1159 @@
+[2024-11-18T13:39:57.768+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T13:39:57.791+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T13:39:57.804+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T13:39:57.804+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T13:39:57.833+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T13:39:57.845+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpapedw63u']
+[2024-11-18T13:39:57.849+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask run-example
+[2024-11-18T13:39:57.852+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=204) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T13:39:57.853+0000] {standard_task_runner.py:72} INFO - Started process 207 to run task
+[2024-11-18T13:39:57.904+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host f01d71a2fe35
+[2024-11-18T13:39:57.987+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T13:39:57.988+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T13:39:58.039+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T13:39:58.049+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T13:39:58.057+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T133957, end_date=20241118T133958
+[2024-11-18T13:39:58.073+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T13:39:58.074+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 5 for task run-example (Failed to establish connection to any given Docker hosts.; 207)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T13:39:58.109+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T13:39:58.139+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T13:39:58.142+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:04:18.676+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:04:18.693+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:04:18.703+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:04:18.704+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:04:18.717+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:04:18.731+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=205) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:04:18.732+0000] {standard_task_runner.py:72} INFO - Started process 207 to run task
+[2024-11-18T14:04:18.735+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpydc61hnu']
+[2024-11-18T14:04:18.737+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T14:04:18.784+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host bb5b67bc1370
+[2024-11-18T14:04:18.861+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:04:18.862+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:04:18.901+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:04:18.909+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:04:18.920+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T140418, end_date=20241118T140418
+[2024-11-18T14:04:18.942+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:04:18.943+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 4 for task run-example (Failed to establish connection to any given Docker hosts.; 207)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:04:18.989+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:04:19.021+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T14:04:19.023+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:10:23.299+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:10:23.336+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:10:23.352+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:10:23.353+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:10:23.379+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:10:23.390+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpfjhu32ps']
+[2024-11-18T14:10:23.394+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T14:10:23.402+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=196) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:10:23.407+0000] {standard_task_runner.py:72} INFO - Started process 202 to run task
+[2024-11-18T14:10:23.493+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 3bc8dd966d32
+[2024-11-18T14:10:23.625+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:10:23.626+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:10:23.675+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:10:23.687+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:10:23.698+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T141023, end_date=20241118T141023
+[2024-11-18T14:10:23.721+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:10:23.722+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 4 for task run-example (Failed to establish connection to any given Docker hosts.; 202)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:10:23.756+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:10:23.787+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T14:10:23.790+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:16:46.500+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:16:46.517+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:16:46.525+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:16:46.526+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:16:46.539+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:16:46.551+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpw4s9dffo']
+[2024-11-18T14:16:46.553+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=209) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:16:46.553+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T14:16:46.554+0000] {standard_task_runner.py:72} INFO - Started process 212 to run task
+[2024-11-18T14:16:46.597+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 5a78c1ec5b84
+[2024-11-18T14:16:46.671+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:16:46.672+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:16:46.714+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:16:46.724+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:16:46.733+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T141646, end_date=20241118T141646
+[2024-11-18T14:16:46.748+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:16:46.749+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 4 for task run-example (Failed to establish connection to any given Docker hosts.; 212)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:16:46.770+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:16:46.799+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T14:16:46.801+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:23:18.941+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:23:18.962+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:23:18.975+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:23:18.976+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:23:18.994+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:23:19.006+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmppluwkkxu']
+[2024-11-18T14:23:19.009+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask run-example
+[2024-11-18T14:23:19.012+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=197) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:23:19.013+0000] {standard_task_runner.py:72} INFO - Started process 202 to run task
+[2024-11-18T14:23:19.069+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host d991cb8438f3
+[2024-11-18T14:23:19.166+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:23:19.168+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:23:19.221+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:23:19.232+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:23:19.241+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T142318, end_date=20241118T142319
+[2024-11-18T14:23:19.258+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:23:19.259+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 3 for task run-example (Failed to establish connection to any given Docker hosts.; 202)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:23:19.310+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:23:19.325+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:28:04.409+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:28:04.430+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:28:04.440+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:28:04.441+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:28:04.458+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:28:04.470+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp2mqgk_rr']
+[2024-11-18T14:28:04.472+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask run-example
+[2024-11-18T14:28:04.474+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:28:04.475+0000] {standard_task_runner.py:72} INFO - Started process 204 to run task
+[2024-11-18T14:28:04.535+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 5709fa7d27c4
+[2024-11-18T14:28:04.631+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:28:04.633+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:28:04.680+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:28:04.693+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:28:04.704+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T142804, end_date=20241118T142804
+[2024-11-18T14:28:04.726+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:28:04.727+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 6 for task run-example (Failed to establish connection to any given Docker hosts.; 204)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:28:04.774+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:28:04.808+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T14:28:04.812+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T14:40:34.933+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T14:40:34.952+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:40:34.963+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T14:40:34.964+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T14:40:34.981+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T14:40:34.993+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpn0vha5u_']
+[2024-11-18T14:40:34.997+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask run-example
+[2024-11-18T14:40:35.001+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=200) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T14:40:35.003+0000] {standard_task_runner.py:72} INFO - Started process 204 to run task
+[2024-11-18T14:40:35.050+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host aa723b0e8432
+[2024-11-18T14:40:35.133+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T14:40:35.134+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T14:40:35.177+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T14:40:35.189+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:40:35.198+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T144034, end_date=20241118T144035
+[2024-11-18T14:40:35.223+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T14:40:35.224+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 3 for task run-example (Failed to establish connection to any given Docker hosts.; 204)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T14:40:35.259+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T14:40:35.287+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T14:40:35.289+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T15:15:31.750+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T15:15:31.769+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:15:31.783+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:15:31.784+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T15:15:31.801+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T15:15:31.813+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmph5bmjh8q']
+[2024-11-18T15:15:31.816+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask run-example
+[2024-11-18T15:15:31.816+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=197) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T15:15:31.818+0000] {standard_task_runner.py:72} INFO - Started process 203 to run task
+[2024-11-18T15:15:31.873+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 22eaae904c7a
+[2024-11-18T15:15:31.970+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T15:15:31.971+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T15:15:32.046+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T15:15:32.059+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:15:32.071+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T151531, end_date=20241118T151532
+[2024-11-18T15:15:32.099+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T15:15:32.100+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 6 for task run-example (Failed to establish connection to any given Docker hosts.; 203)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:15:32.156+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T15:15:32.194+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T15:15:32.196+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T15:29:42.308+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T15:29:42.324+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:29:42.332+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:29:42.333+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T15:29:42.347+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T15:29:42.360+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp9902iem_']
+[2024-11-18T15:29:42.363+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask run-example
+[2024-11-18T15:29:42.363+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=189) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T15:29:42.364+0000] {standard_task_runner.py:72} INFO - Started process 190 to run task
+[2024-11-18T15:29:42.408+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host a9a649333837
+[2024-11-18T15:29:42.481+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T15:29:42.483+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T15:29:42.529+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T15:29:42.541+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:29:42.549+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T152942, end_date=20241118T152942
+[2024-11-18T15:29:42.564+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T15:29:42.565+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 6 for task run-example (Failed to establish connection to any given Docker hosts.; 190)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:29:42.579+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T15:29:42.605+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T15:29:42.607+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T15:32:12.174+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T15:32:12.192+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:32:12.201+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:32:12.202+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T15:32:12.216+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T15:32:12.228+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp35bwtthp']
+[2024-11-18T15:32:12.231+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask run-example
+[2024-11-18T15:32:12.233+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=199) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T15:32:12.234+0000] {standard_task_runner.py:72} INFO - Started process 204 to run task
+[2024-11-18T15:32:12.281+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 4e6083a2da12
+[2024-11-18T15:32:12.354+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T15:32:12.355+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T15:32:12.396+0000] {docker.py:157} ERROR - Failed to establish connection to Docker host unix://var/run/docker.sock: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+[2024-11-18T15:32:12.405+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:32:12.413+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T153212, end_date=20241118T153212
+[2024-11-18T15:32:12.430+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T15:32:12.431+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 5 for task run-example (Failed to establish connection to any given Docker hosts.; 204)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 495, in execute
+    if self.force_pull or not self.cli.images(name=self.image):
+                              ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 363, in cli
+    return self.hook.api_client
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/hooks/docker.py", line 161, in api_client
+    raise AirflowException("Failed to establish connection to any given Docker hosts.")
+airflow.exceptions.AirflowException: Failed to establish connection to any given Docker hosts.
+[2024-11-18T15:32:12.449+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T15:32:12.475+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T15:32:12.477+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T15:56:19.843+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T15:56:19.861+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:56:19.870+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T15:56:19.871+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T15:56:19.884+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T15:56:19.894+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpg4axbll8']
+[2024-11-18T15:56:19.897+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask run-example
+[2024-11-18T15:56:19.898+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=199) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T15:56:19.900+0000] {standard_task_runner.py:72} INFO - Started process 203 to run task
+[2024-11-18T15:56:19.944+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host a2bc12b8c1cb
+[2024-11-18T15:56:20.018+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T15:56:20.019+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T15:56:20.116+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T15:56:27.790+0000] {docker.py:438} INFO - 
+[2024-11-18T15:56:29.686+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T15:56:30.419+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T15:56:30.420+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T155619, end_date=20241118T155630
+[2024-11-18T15:56:30.451+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T15:56:30.475+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T15:56:30.477+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:02:20.521+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:02:20.549+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:02:20.560+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:02:20.562+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:02:20.584+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:02:20.596+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmphl52suce']
+[2024-11-18T16:02:20.600+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T16:02:20.603+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=197) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:02:20.604+0000] {standard_task_runner.py:72} INFO - Started process 204 to run task
+[2024-11-18T16:02:20.670+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 1d5bdcb3fd32
+[2024-11-18T16:02:20.770+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:02:20.771+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:02:20.877+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:02:29.654+0000] {docker.py:438} INFO - 
+[2024-11-18T16:02:31.779+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:02:32.725+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:02:32.725+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T160220, end_date=20241118T160232
+[2024-11-18T16:02:32.763+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:02:32.785+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:02:32.787+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:07:59.808+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:07:59.824+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:07:59.833+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:07:59.834+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:07:59.847+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:07:59.855+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpi5ro8dbu']
+[2024-11-18T16:07:59.858+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T16:07:59.860+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=233) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:07:59.861+0000] {standard_task_runner.py:72} INFO - Started process 235 to run task
+[2024-11-18T16:07:59.908+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 949de22ee74c
+[2024-11-18T16:07:59.984+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:07:59.985+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:08:00.063+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:08:07.815+0000] {docker.py:438} INFO - 
+[2024-11-18T16:08:09.679+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:08:10.386+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:08:10.387+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T160759, end_date=20241118T160810
+[2024-11-18T16:08:10.409+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:08:10.435+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:08:10.437+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:11:54.366+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:11:54.400+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:11:54.414+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:11:54.415+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:11:54.446+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:11:54.459+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp__uzp9wt']
+[2024-11-18T16:11:54.465+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask run-example
+[2024-11-18T16:11:54.468+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:11:54.469+0000] {standard_task_runner.py:72} INFO - Started process 201 to run task
+[2024-11-18T16:11:54.530+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 4aaa0084fcc4
+[2024-11-18T16:11:54.635+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:11:54.636+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:11:54.724+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:12:03.069+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:05.238+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:12:06.062+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:12:06.062+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T161154, end_date=20241118T161206
+[2024-11-18T16:12:06.115+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:12:06.136+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:12:06.138+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:23:01.191+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:23:01.210+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:23:01.218+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:23:01.219+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:23:01.234+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:23:01.248+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=186) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:23:01.249+0000] {standard_task_runner.py:72} INFO - Started process 192 to run task
+[2024-11-18T16:23:01.249+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmptwtws2sn']
+[2024-11-18T16:23:01.253+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T16:23:01.298+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 0ae2d7ed9877
+[2024-11-18T16:23:01.384+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:23:01.385+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:23:01.453+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:23:09.181+0000] {docker.py:438} INFO - 
+[2024-11-18T16:23:11.019+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:23:11.772+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:23:11.772+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T162301, end_date=20241118T162311
+[2024-11-18T16:23:11.794+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:23:11.818+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:23:11.820+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:26:51.428+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:26:51.450+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:26:51.459+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:26:51.460+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:26:51.478+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:26:51.487+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpoyx7e467']
+[2024-11-18T16:26:51.489+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask run-example
+[2024-11-18T16:26:51.491+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=204) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:26:51.492+0000] {standard_task_runner.py:72} INFO - Started process 215 to run task
+[2024-11-18T16:26:51.536+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 061dbc9e53b1
+[2024-11-18T16:26:51.611+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:26:51.612+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:26:51.694+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:26:59.278+0000] {docker.py:438} INFO - 
+[2024-11-18T16:27:01.118+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:27:01.922+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:27:01.923+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T162651, end_date=20241118T162701
+[2024-11-18T16:27:01.960+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:27:01.983+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:27:01.986+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-18T16:48:32.661+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:48:32.685+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:48:32.699+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [queued]>
+[2024-11-18T16:48:32.700+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:48:32.726+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-17 00:00:00+00:00
+[2024-11-18T16:48:32.740+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'scheduled__2024-11-17T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp7sx0264p']
+[2024-11-18T16:48:32.744+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask run-example
+[2024-11-18T16:48:32.749+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=188) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:48:32.751+0000] {standard_task_runner.py:72} INFO - Started process 190 to run task
+[2024-11-18T16:48:32.806+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example scheduled__2024-11-17T00:00:00+00:00 [running]> on host 7171e7af8d4a
+[2024-11-18T16:48:32.881+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-17T00:00:00+00:00'
+[2024-11-18T16:48:32.882+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:48:32.961+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:48:40.400+0000] {docker.py:438} INFO - 
+[2024-11-18T16:48:42.269+0000] {docker.py:438} INFO - Fichier total_births_by_country.json créé
+[2024-11-18T16:48:42.846+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:48:42.847+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group, task_id=run-example, run_id=scheduled__2024-11-17T00:00:00+00:00, execution_date=20241117T000000, start_date=20241118T164832, end_date=20241118T164842
+[2024-11-18T16:48:42.891+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T16:48:42.919+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:48:42.921+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

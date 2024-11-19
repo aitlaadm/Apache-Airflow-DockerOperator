@@ -1,0 +1,23 @@
+[2024-11-18T21:53:11.279+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T21:53:11.296+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group_test.create-db manual__2024-11-18T21:53:10.420810+00:00 [queued]>
+[2024-11-18T21:53:11.304+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group_test.create-db manual__2024-11-18T21:53:10.420810+00:00 [queued]>
+[2024-11-18T21:53:11.305+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T21:53:11.317+0000] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): create-db> on 2024-11-18 21:53:10.420810+00:00
+[2024-11-18T21:53:11.324+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group_test', 'create-db', 'manual__2024-11-18T21:53:10.420810+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmp3qcvpgss']
+[2024-11-18T21:53:11.326+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask create-db
+[2024-11-18T21:53:11.328+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=191) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T21:53:11.329+0000] {standard_task_runner.py:72} INFO - Started process 193 to run task
+[2024-11-18T21:53:11.363+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group_test.create-db manual__2024-11-18T21:53:10.420810+00:00 [running]> on host 131e0c36cc7d
+[2024-11-18T21:53:11.433+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group_test' AIRFLOW_CTX_TASK_ID='create-db' AIRFLOW_CTX_EXECUTION_DATE='2024-11-18T21:53:10.420810+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-18T21:53:10.420810+00:00'
+[2024-11-18T21:53:11.434+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T21:53:11.468+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-18T21:53:11.469+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '/opt/***/create-ciril-db.sh']
+[2024-11-18T21:53:11.477+0000] {subprocess.py:86} INFO - Output:
+[2024-11-18T21:53:11.608+0000] {subprocess.py:93} INFO - mysql: [Warning] Using a password on the command line interface can be insecure.
+[2024-11-18T21:53:11.779+0000] {subprocess.py:93} INFO - SQL script executed successfully.
+[2024-11-18T21:53:11.780+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-11-18T21:53:11.805+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T21:53:11.806+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=Ciril_group_test, task_id=create-db, run_id=manual__2024-11-18T21:53:10.420810+00:00, execution_date=20241118T215310, start_date=20241118T215311, end_date=20241118T215311
+[2024-11-18T21:53:11.866+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-18T21:53:11.898+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T21:53:11.901+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

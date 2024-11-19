@@ -1,0 +1,134 @@
+[2024-11-16T18:38:02.417+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-16T18:38:02.434+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.run-example manual__2024-11-16T18:38:01.197779+00:00 [queued]>
+[2024-11-16T18:38:02.441+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.run-example manual__2024-11-16T18:38:01.197779+00:00 [queued]>
+[2024-11-16T18:38:02.442+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-16T18:38:02.457+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): run-example> on 2024-11-16 18:38:01.197779+00:00
+[2024-11-16T18:38:02.464+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'run-example', 'manual__2024-11-16T18:38:01.197779+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpr_699p5o']
+[2024-11-16T18:38:02.466+0000] {standard_task_runner.py:105} INFO - Job 16: Subtask run-example
+[2024-11-16T18:38:02.468+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=209) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-16T18:38:02.469+0000] {standard_task_runner.py:72} INFO - Started process 211 to run task
+[2024-11-16T18:38:02.504+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.run-example manual__2024-11-16T18:38:01.197779+00:00 [running]> on host a15888e83688
+[2024-11-16T18:38:02.573+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='run-example' AIRFLOW_CTX_EXECUTION_DATE='2024-11-16T18:38:01.197779+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-16T18:38:01.197779+00:00'
+[2024-11-16T18:38:02.574+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-16T18:38:02.616+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-16T18:38:09.116+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.257+0000] {docker.py:438} INFO - [91mUsage:[0m [37m***[0m [[36m-h[0m] [36mGROUP_OR_COMMAND[0m ...
+[2024-11-16T18:38:11.258+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.258+0000] {docker.py:438} INFO - [91mPositional Arguments:[0m
+[2024-11-16T18:38:11.259+0000] {docker.py:438} INFO -   [36mGROUP_OR_COMMAND[0m
+[2024-11-16T18:38:11.259+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.260+0000] {docker.py:438} INFO - [36m    Groups[0m
+[2024-11-16T18:38:11.260+0000] {docker.py:438} INFO -       [36mconfig[0m         [39mView configuration[0m
+[2024-11-16T18:38:11.261+0000] {docker.py:438} INFO -       [36mconnections[0m    [39mManage connections[0m
+[2024-11-16T18:38:11.261+0000] {docker.py:438} INFO -       [36mdags[0m           [39mManage DAGs[0m
+[2024-11-16T18:38:11.261+0000] {docker.py:438} INFO -       [36mdb[0m             [39mDatabase operations[0m
+[2024-11-16T18:38:11.262+0000] {docker.py:438} INFO -       [36mjobs[0m           [39mManage jobs[0m
+[2024-11-16T18:38:11.262+0000] {docker.py:438} INFO -       [36mpools[0m          [39mManage pools[0m
+[2024-11-16T18:38:11.263+0000] {docker.py:438} INFO -       [36mproviders[0m      [39mDisplay providers[0m
+[2024-11-16T18:38:11.263+0000] {docker.py:438} INFO -       [36mroles[0m          [39mManage roles[0m
+[2024-11-16T18:38:11.264+0000] {docker.py:438} INFO -       [36mtasks[0m          [39mManage tasks[0m
+[2024-11-16T18:38:11.264+0000] {docker.py:438} INFO -       [36musers[0m          [39mManage users[0m
+[2024-11-16T18:38:11.265+0000] {docker.py:438} INFO -       [36mvariables[0m      [39mManage variables[0m
+[2024-11-16T18:38:11.265+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.266+0000] {docker.py:438} INFO - [36m    Commands:[0m
+[2024-11-16T18:38:11.266+0000] {docker.py:438} INFO -       [36mcheat-sheet[0m    [39mDisplay cheat sheet[0m
+[2024-11-16T18:38:11.267+0000] {docker.py:438} INFO -       [36mdag-processor[0m  [39mStart a standalone Dag Processor instance[0m
+[2024-11-16T18:38:11.267+0000] {docker.py:438} INFO -       [36minfo[0m           [39mShow information about current Airflow and environment[0m
+[2024-11-16T18:38:11.268+0000] {docker.py:438} INFO -       [36mkerberos[0m       [39mStart a kerberos ticket renewer[0m
+[2024-11-16T18:38:11.268+0000] {docker.py:438} INFO -       [36mplugins[0m        [39mDump information about loaded plugins[0m
+[2024-11-16T18:38:11.269+0000] {docker.py:438} INFO -       [36mrotate-fernet-key[0m
+[2024-11-16T18:38:11.269+0000] {docker.py:438} INFO -                      [39mRotate encrypted connection credentials and variables[0m
+[2024-11-16T18:38:11.270+0000] {docker.py:438} INFO -       [36mscheduler[0m      [39mStart a scheduler instance[0m
+[2024-11-16T18:38:11.270+0000] {docker.py:438} INFO -       [36mstandalone[0m     [39mRun an all-in-one copy of Airflow[0m
+[2024-11-16T18:38:11.271+0000] {docker.py:438} INFO -       [36msync-perm[0m      [39mUpdate permissions for existing roles and optionally DAGs[0m
+[2024-11-16T18:38:11.271+0000] {docker.py:438} INFO -       [36mtriggerer[0m      [39mStart a triggerer instance[0m
+[2024-11-16T18:38:11.272+0000] {docker.py:438} INFO -       [36mversion[0m        [39mShow the version[0m
+[2024-11-16T18:38:11.272+0000] {docker.py:438} INFO -       [36mwebserver[0m      [39mStart a Airflow webserver instance[0m
+[2024-11-16T18:38:11.273+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.273+0000] {docker.py:438} INFO - [91mOptions:[0m
+[2024-11-16T18:38:11.274+0000] {docker.py:438} INFO -   [36m-h[0m, [36m--help[0m         [39mshow this help message and exit[0m
+[2024-11-16T18:38:11.274+0000] {docker.py:438} INFO - 
+[2024-11-16T18:38:11.275+0000] {docker.py:438} INFO - *** command error: argument GROUP_OR_COMMAND: invalid choice: './example.py' (choose from 'cheat-sheet', 'config', 'connections', 'dag-processor', 'dags', 'db', 'info', 'jobs', 'kerberos', 'plugins', 'pools', 'providers', 'roles', 'rotate-fernet-key', 'scheduler', 'standalone', 'sync-perm', 'tasks', 'triggerer', 'users', 'variables', 'version', 'webserver'), see help above.
+[2024-11-16T18:38:11.924+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 513, in execute
+    return self._run_image()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 372, in _run_image
+    return self._run_image_with_mounts([*self.mounts, tmp_mount], add_tmp_variable=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 446, in _run_image_with_mounts
+    raise DockerContainerFailedException(f"Docker container failed: {result!r}", logs=log_lines)
+airflow.providers.docker.exceptions.DockerContainerFailedException: Docker container failed: {'StatusCode': 2}
+[2024-11-16T18:38:11.931+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=run-example, run_id=manual__2024-11-16T18:38:01.197779+00:00, execution_date=20241116T183801, start_date=20241116T183802, end_date=20241116T183811
+[2024-11-16T18:38:11.945+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-16T18:38:11.946+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 16 for task run-example (Docker container failed: {'StatusCode': 2}; 211)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 513, in execute
+    return self._run_image()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 372, in _run_image
+    return self._run_image_with_mounts([*self.mounts, tmp_mount], add_tmp_variable=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 446, in _run_image_with_mounts
+    raise DockerContainerFailedException(f"Docker container failed: {result!r}", logs=log_lines)
+airflow.providers.docker.exceptions.DockerContainerFailedException: Docker container failed: {'StatusCode': 2}
+[2024-11-16T18:38:11.994+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-16T18:38:12.014+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-16T18:38:12.016+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

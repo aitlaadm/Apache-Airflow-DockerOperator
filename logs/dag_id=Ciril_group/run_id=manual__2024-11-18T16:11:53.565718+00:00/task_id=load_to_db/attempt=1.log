@@ -1,0 +1,199 @@
+[2024-11-18T16:12:06.530+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-18T16:12:06.548+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Ciril_group.load_to_db manual__2024-11-18T16:11:53.565718+00:00 [queued]>
+[2024-11-18T16:12:06.556+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Ciril_group.load_to_db manual__2024-11-18T16:11:53.565718+00:00 [queued]>
+[2024-11-18T16:12:06.557+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 6
+[2024-11-18T16:12:06.570+0000] {taskinstance.py:2888} INFO - Executing <Task(DockerOperator): load_to_db> on 2024-11-18 16:11:53.565718+00:00
+[2024-11-18T16:12:06.581+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=256) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-18T16:12:06.582+0000] {standard_task_runner.py:72} INFO - Started process 258 to run task
+[2024-11-18T16:12:06.581+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'Ciril_group', 'load_to_db', 'manual__2024-11-18T16:11:53.565718+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/ciril_group_dag.py', '--cfg-path', '/tmp/tmpwen4etip']
+[2024-11-18T16:12:06.583+0000] {standard_task_runner.py:105} INFO - Job 8: Subtask load_to_db
+[2024-11-18T16:12:06.621+0000] {task_command.py:467} INFO - Running <TaskInstance: Ciril_group.load_to_db manual__2024-11-18T16:11:53.565718+00:00 [running]> on host 4aaa0084fcc4
+[2024-11-18T16:12:06.689+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Simo' AIRFLOW_CTX_DAG_ID='Ciril_group' AIRFLOW_CTX_TASK_ID='load_to_db' AIRFLOW_CTX_EXECUTION_DATE='2024-11-18T16:11:53.565718+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-18T16:11:53.565718+00:00'
+[2024-11-18T16:12:06.690+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-18T16:12:06.737+0000] {docker.py:367} INFO - Starting docker container from image ***_ciril:latest
+[2024-11-18T16:12:14.326+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:14.932+0000] {docker.py:438} INFO - /opt/***/load-csv/load_to_db.py:13: RemovedIn20Warning: [31mDeprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. [32mTo prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". [36mSet environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message.[0m (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+[2024-11-18T16:12:14.933+0000] {docker.py:438} INFO -   metadata = sqlalchemy.schema.MetaData(engine)
+[2024-11-18T16:12:14.934+0000] {docker.py:438} INFO - Connexion à la base de données réussie
+[2024-11-18T16:12:14.944+0000] {docker.py:438} INFO - Traceback (most recent call last):
+[2024-11-18T16:12:14.944+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2024-11-18T16:12:14.945+0000] {docker.py:438} INFO - self.dialect.do_execute(
+[2024-11-18T16:12:14.945+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2024-11-18T16:12:14.946+0000] {docker.py:438} INFO -     cursor.execute(statement, parameters)
+[2024-11-18T16:12:14.946+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 206, in execute
+[2024-11-18T16:12:14.947+0000] {docker.py:438} INFO -     res = self._query(query)
+[2024-11-18T16:12:14.947+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.948+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 319, in _query
+[2024-11-18T16:12:14.948+0000] {docker.py:438} INFO -     db.query(q)
+[2024-11-18T16:12:14.949+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 254, in query
+[2024-11-18T16:12:14.950+0000] {docker.py:438} INFO -     _mysql.connection.query(self, query)
+[2024-11-18T16:12:14.950+0000] {docker.py:438} INFO - MySQLdb.ProgrammingError: (1146, "Table 'db_dteng.places' doesn't exist")
+[2024-11-18T16:12:14.951+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:14.951+0000] {docker.py:438} INFO - The above exception was the direct cause of the following exception:
+[2024-11-18T16:12:14.952+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:14.952+0000] {docker.py:438} INFO - Traceback (most recent call last):
+[2024-11-18T16:12:14.953+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/base.py", line 3220, in _show_create_table
+[2024-11-18T16:12:14.953+0000] {docker.py:438} INFO - ).exec_driver_sql(st)
+[2024-11-18T16:12:14.954+0000] {docker.py:438} INFO -       ^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.954+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1770, in exec_driver_sql
+[2024-11-18T16:12:14.955+0000] {docker.py:438} INFO -     return self._exec_driver_sql(
+[2024-11-18T16:12:14.955+0000] {docker.py:438} INFO -            ^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.956+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1674, in _exec_driver_sql
+[2024-11-18T16:12:14.956+0000] {docker.py:438} INFO -     ret = self._execute_context(
+[2024-11-18T16:12:14.957+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.957+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+[2024-11-18T16:12:14.958+0000] {docker.py:438} INFO -     self._handle_dbapi_exception(
+[2024-11-18T16:12:14.958+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+[2024-11-18T16:12:14.959+0000] {docker.py:438} INFO -     util.raise_(
+[2024-11-18T16:12:14.959+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-11-18T16:12:14.960+0000] {docker.py:438} INFO -     raise exception
+[2024-11-18T16:12:14.960+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2024-11-18T16:12:14.961+0000] {docker.py:438} INFO -     self.dialect.do_execute(
+[2024-11-18T16:12:14.961+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2024-11-18T16:12:14.962+0000] {docker.py:438} INFO -     cursor.execute(statement, parameters)
+[2024-11-18T16:12:14.962+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 206, in execute
+[2024-11-18T16:12:14.963+0000] {docker.py:438} INFO -     res = self._query(query)
+[2024-11-18T16:12:14.963+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.964+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/cursors.py", line 319, in _query
+[2024-11-18T16:12:14.964+0000] {docker.py:438} INFO -     db.query(q)
+[2024-11-18T16:12:14.965+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/MySQLdb/connections.py", line 254, in query
+[2024-11-18T16:12:14.965+0000] {docker.py:438} INFO -     _mysql.connection.query(self, query)
+[2024-11-18T16:12:14.966+0000] {docker.py:438} INFO - sqlalchemy.exc.ProgrammingError: (MySQLdb.ProgrammingError) (1146, "Table 'db_dteng.places' doesn't exist")
+[2024-11-18T16:12:14.966+0000] {docker.py:438} INFO - [SQL: SHOW CREATE TABLE `places`]
+[2024-11-18T16:12:14.967+0000] {docker.py:438} INFO - (Background on this error at: https://sqlalche.me/e/14/f405)
+[2024-11-18T16:12:14.967+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:14.968+0000] {docker.py:438} INFO - The above exception was the direct cause of the following exception:
+[2024-11-18T16:12:14.968+0000] {docker.py:438} INFO - 
+[2024-11-18T16:12:14.969+0000] {docker.py:438} INFO - Traceback (most recent call last):
+[2024-11-18T16:12:14.969+0000] {docker.py:438} INFO -   File "/opt/***/load-csv/load_to_db.py", line 23, in <module>
+[2024-11-18T16:12:14.970+0000] {docker.py:438} INFO -     Places=   sqlalchemy.schema.Table('places', metadata, autoload=True, autoload_with=engine)
+[2024-11-18T16:12:14.970+0000] {docker.py:438} INFO -               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.971+0000] {docker.py:438} INFO -   File "<string>", line 2, in __new__
+[2024-11-18T16:12:14.971+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/deprecations.py", line 375, in warned
+[2024-11-18T16:12:14.972+0000] {docker.py:438} INFO -     return fn(*args, **kwargs)
+[2024-11-18T16:12:14.972+0000] {docker.py:438} INFO -            ^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.973+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 618, in __new__
+[2024-11-18T16:12:14.973+0000] {docker.py:438} INFO -     with util.safe_reraise():
+[2024-11-18T16:12:14.974+0000] {docker.py:438} INFO -          ^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.974+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2024-11-18T16:12:14.975+0000] {docker.py:438} INFO -     compat.raise_(
+[2024-11-18T16:12:14.975+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-11-18T16:12:14.976+0000] {docker.py:438} INFO -     raise exception
+[2024-11-18T16:12:14.976+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 614, in __new__
+[2024-11-18T16:12:14.977+0000] {docker.py:438} INFO -     table._init(name, metadata, *args, **kw)
+[2024-11-18T16:12:14.977+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 689, in _init
+[2024-11-18T16:12:14.978+0000] {docker.py:438} INFO -     self._autoload(
+[2024-11-18T16:12:14.978+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 724, in _autoload
+[2024-11-18T16:12:14.978+0000] {docker.py:438} INFO -     conn_insp.reflect_table(
+[2024-11-18T16:12:14.979+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/reflection.py", line 757, in reflect_table
+[2024-11-18T16:12:14.979+0000] {docker.py:438} INFO -     tbl_opts = self.get_table_options(
+[2024-11-18T16:12:14.980+0000] {docker.py:438} INFO -                ^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.980+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/reflection.py", line 398, in get_table_options
+[2024-11-18T16:12:14.981+0000] {docker.py:438} INFO -     return self.dialect.get_table_options(
+[2024-11-18T16:12:14.981+0000] {docker.py:438} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.981+0000] {docker.py:438} INFO -   File "<string>", line 2, in get_table_options
+[2024-11-18T16:12:14.982+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/reflection.py", line 55, in cache
+[2024-11-18T16:12:14.982+0000] {docker.py:438} INFO -     ret = fn(self, con, *args, **kw)
+[2024-11-18T16:12:14.982+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.983+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/base.py", line 2828, in get_table_options
+[2024-11-18T16:12:14.983+0000] {docker.py:438} INFO -     parsed_state = self._parsed_state_or_create(
+[2024-11-18T16:12:14.984+0000] {docker.py:438} INFO -                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.984+0000] {docker.py:438} INFO -   F
+[2024-11-18T16:12:14.985+0000] {docker.py:438} INFO - ile "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/base.py", line 3085, in _parsed_state_or_create
+[2024-11-18T16:12:14.986+0000] {docker.py:438} INFO -     return self._setup_parser(
+[2024-11-18T16:12:14.986+0000] {docker.py:438} INFO -            ^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.986+0000] {docker.py:438} INFO -   File "<string>", line 2, in _setup_parser
+[2024-11-18T16:12:14.987+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/engine/reflection.py", line 55, in cache
+[2024-11-18T16:12:14.988+0000] {docker.py:438} INFO -     ret = fn(self, con, *args, **kw)
+[2024-11-18T16:12:14.988+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.988+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/base.py", line 3112, in _setup_parser
+[2024-11-18T16:12:14.989+0000] {docker.py:438} INFO -     sql = self._show_create_table(
+[2024-11-18T16:12:14.989+0000] {docker.py:438} INFO -           ^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-18T16:12:14.989+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/base.py", line 3223, in _show_create_table
+[2024-11-18T16:12:14.990+0000] {docker.py:438} INFO -     util.raise_(exc.NoSuchTableError(full_name), replace_context=e)
+[2024-11-18T16:12:14.991+0000] {docker.py:438} INFO -   File "/home/***/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2024-11-18T16:12:14.991+0000] {docker.py:438} INFO -     raise exception
+[2024-11-18T16:12:14.992+0000] {docker.py:438} INFO - sqlalchemy.exc.NoSuchTableError: `places`
+[2024-11-18T16:12:15.654+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 513, in execute
+    return self._run_image()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 372, in _run_image
+    return self._run_image_with_mounts([*self.mounts, tmp_mount], add_tmp_variable=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 446, in _run_image_with_mounts
+    raise DockerContainerFailedException(f"Docker container failed: {result!r}", logs=log_lines)
+airflow.providers.docker.exceptions.DockerContainerFailedException: Docker container failed: {'StatusCode': 1}
+[2024-11-18T16:12:15.661+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=Ciril_group, task_id=load_to_db, run_id=manual__2024-11-18T16:11:53.565718+00:00, execution_date=20241118T161153, start_date=20241118T161206, end_date=20241118T161215
+[2024-11-18T16:12:15.675+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-18T16:12:15.676+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 8 for task load_to_db (Docker container failed: {'StatusCode': 1}; 258)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 513, in execute
+    return self._run_image()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 372, in _run_image
+    return self._run_image_with_mounts([*self.mounts, tmp_mount], add_tmp_variable=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/docker/operators/docker.py", line 446, in _run_image_with_mounts
+    raise DockerContainerFailedException(f"Docker container failed: {result!r}", logs=log_lines)
+airflow.providers.docker.exceptions.DockerContainerFailedException: Docker container failed: {'StatusCode': 1}
+[2024-11-18T16:12:15.708+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-18T16:12:15.726+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-18T16:12:15.728+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
